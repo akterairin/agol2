@@ -20,6 +20,14 @@
 <script src="https://js.arcgis.com/4.28/"></script>
  
         <script>
+            require([  
+"esri/config",  
+"esri/Map",  
+"esri/views/MapView",   
+"esri/Graphic",  
+"esri/layers/GraphicsLayer"   
+], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+            
             require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
  
                 esriConfig.apiKey = "AAPKacbc03aeb64248229c85810ce9f22ce7RC4SiHjeE1hD_QTL2MVmvDjYBkU3xDiPD-mG3iL_EtnPjbpwIMT86F2d2LLQZDue";
@@ -34,8 +42,32 @@
                     zoom: 13, // Zoom level
                     container: "viewDiv" // Div element
                 });
- 
-            });
+                //adding the constructor for the graphicslayer
+                const graphicsLayer = new GraphicsLayer();  
+map.add(graphicsLayer);
+//defining the geomatry of the point
+const point = { //Create a point  
+  type: "point",  
+  longitude: -97.750689,    //long lat of Stevie Ray Vaughan Statue
+  latitude: 30.263098
+};
+//defining the marker style
+const simpleMarkerSymbol = {  
+  type: "simple-marker",  
+  color: [0, 0, 139],  // Color of blues rock
+  outline: {  
+    color: [255, 255, 255], // White  
+    width: 1
+  }  
+};
+//creating the point
+const pointGraphic = new Graphic({  
+  geometry: point,  
+  symbol: simpleMarkerSymbol  
+});
+//adding the point to the graphicsLayer
+graphicsLayer.add(pointGraphic);
+ });
 </script>
  
     </head>
