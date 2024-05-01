@@ -23,11 +23,11 @@
             require([  
 "esri/config",  
 "esri/Map",  
-"esri/views/MapView",   
+"esri/views/MapView",  
 "esri/Graphic",  
-"esri/layers/GraphicsLayer"   
+"esri/layers/GraphicsLayer"  
 ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
-            
+           
             require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
  
                 esriConfig.apiKey = "AAPKacbc03aeb64248229c85810ce9f22ce7RC4SiHjeE1hD_QTL2MVmvDjYBkU3xDiPD-mG3iL_EtnPjbpwIMT86F2d2LLQZDue";
@@ -60,26 +60,35 @@ const simpleMarkerSymbol = {
     width: 1
   }  
 };
+// defining popup properties
+const popupTemplate = {
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributes = {
+    Name: "Stevie Ray Vaughan Statue",
+    Description: "A bronze sculpture of Stevie Ray Vaughan by Ralph Helmick"
+ }
+
 //creating the point
 const pointGraphic = new Graphic({  
   geometry: point,  
-  symbol: simpleMarkerSymbol  
+  symbol: simpleMarkerSymbol, 
+
+// adding popup properties
+attributes: attributes,
+popupTemplate: popupTemplate 
 });
+
 //adding the point to the graphicsLayer
 graphicsLayer.add(pointGraphic);
  });
+
+
 </script>
  
-    </head>
+</head>
 <body>
 <div id="viewDiv"></div>
 </body>
 </html>
-
-
-
-
-
-
-
-
